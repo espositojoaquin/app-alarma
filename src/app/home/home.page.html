@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Blank
@@ -16,5 +16,34 @@
   <div id="container">
     <strong>Ready to create an app?</strong>
     <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content> -->
+<ion-header>
+  <ion-toolbar>
+    <ion-button slot="end" fill="clear" (click)="logOut()">
+      <ion-icon style="color: aliceblue" name="log-out"></ion-icon>
+    </ion-button>
+    <ion-title>
+      Alarma de robo
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ld ld-blur-in" [style.background-color]="background" id="fondo">
+    <div id="info-text" [style.color]="activado?'#fff':'#000'" class="ion-padding">
+     <h1 class="ld ld-slide-ltr-in">Presione el botón para activar o desactivar el detector de robo</h1> 
+    </div>
+    <div style="margin-bottom: 5rem;" [style.animation-name]="activado?'example':''" class="btn-alarm " (click)="activar()">
+      <img class="ld ld-blur-in" *ngIf="!activado" src="../../assets/candadoA.png" alt="">
+      <img class="ld ld-blur-in" *ngIf="activado" src="../../assets/candado.png" alt="">
+
+    </div>
+    <div class="ion-text-center" *ngIf="activado" id="alarm-activada">
+      <span><b>¡ALARMA ACTIVADA!</b></span>
+    </div>
+    <div style="margin-bottom: 5rem; font-size: 3rem;" class="ion-text-center"  *ngIf="!activado" >
+      <span><b>¡ALARMA DESACTIVADA!</b></span>
+    </div>
   </div>
 </ion-content>

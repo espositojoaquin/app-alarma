@@ -1,3 +1,26 @@
+<div class="container" [style.display]="splash ? 'flex' : 'none'">
+  <div class="splash" >
+    <h1>Joaquín Espósito </h1>
+    
+    <!-- <img  src="../assets/login.gif" alt="">  -->
+     <div class="imagenes">
+      <!-- <img  class="imagen" src="../assets/parentesis chico izquierdo.png" alt=""> -->
+       <div [ngClass]="clase">
+         <img class="imagen" src="../assets/candado.png" alt="">
+         <!-- <img class="imagen" src="../assets/candado.png" alt=""> -->
+       </div>
+
+     </div>
+      
+
+  
+
+    <h2>4°B</h2>
+
+  </div>
+</div>
 <ion-app>
+  
   <ion-router-outlet></ion-router-outlet>
 </ion-app>
+
