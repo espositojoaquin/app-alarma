@@ -25,6 +25,7 @@
 // #container a {
 //   text-decoration: none;
 // }
+
 .btn-alarm {
   width: 250px;
   height: 250px;
@@ -39,6 +40,15 @@
   -moz-box-shadow: 1px 1px 40px 5px rgba(100,100,100,0.75);
   box-shadow: 1px 1px 40px 5px rgba(100,100,100,0.75);
 }
+
+.clave{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 
 img{
   width: 80%;

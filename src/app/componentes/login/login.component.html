@@ -4,26 +4,25 @@
   </ion-toolbar>
 </ion-header>
 <div class="container" style="width: 100%; height: 100%;">
-  <img class="candado" src="../../../assets/candado.png" alt="">
-  <ion-content padding>
-  <ion-item>
+  <img class="candado img" src="../../../assets/candado.png" alt="">
+  
+  <div style="position: absolute; margin-bottom: 4rem; margin-top: 1rem; z-index: 999;"><img *ngIf="spiner" src="../../../assets/spinerAzul.gif" alt=""></div>
+  <ion-item class="login">
     <ion-label position="floating">Correo</ion-label>
     <ion-input [(ngModel)]="email" type="text"></ion-input>
 
   </ion-item>
-  <ion-item >
+  <ion-item class="login">
     <ion-label position="floating" >Contraseña</ion-label>
     <ion-input [(ngModel)]="password" type="password" ></ion-input>
   </ion-item>
-  <ion-item style="margin-bottom: 3rem;" >
+  <ion-item class="login">
     <ion-label position="stacked">Usuario</ion-label>
     <ion-select (ionChange)="onChange($event.target.value)" placeholder="Seleccione uno: ">
       <ion-select-option *ngFor="let usuario of usuarios"value="{{usuario.id}}">{{usuario.nombre}}</ion-select-option>
      
     </ion-select>
   </ion-item>
-  <ion-button (click)="ingresar()" expand = "block" color = "primary">Ingresar</ion-button>
+  <!-- <button class="boton" onclick="this.blur();" (click)="ingresar()">Ingresar</button> -->
 
-</ion-content>
-
-</div>
+<ion-button class="boton" (click)="ingresar()" expand = "block">Ingresar</ion-button>

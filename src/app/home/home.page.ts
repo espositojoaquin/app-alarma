@@ -2,12 +2,16 @@ import { Component } from '@angular/core';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion/ngx';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { Vibration } from '@ionic-native/vibration/ngx';
+import { AuthService  } from "../servicios/auth.service";
+import { AlertController } from '@ionic/angular';
+import {ToastService } from "../servicios/toast.service";
+
 
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  styleUrls: ['home.page.scss','ldcv.effects.min.css'],
 })
 export class HomePage {
   background = "#22e610";
@@ -25,23 +29,67 @@ export class HomePage {
   derechaFlag: boolean = false;
   izquierdaFlag: boolean = false;
   horizontalFlag: boolean = false;
+  clave:String="";
+  desBoton = false;
+  contra:boolean = false;
+  clase = "clave ld ld-slide-ltr-in"
 
   constructor(private deviceMotion: DeviceMotion,
     private flashlight: Flashlight,
-    private vibration: Vibration,) {}
+    private vibration: Vibration,
+    private auth:AuthService,
+    public alertController: AlertController,
+    public toats:ToastService) {}
 
     activar() {
       this.activado = !this.activado;
       if (this.activado) {
+        this.contra=true;
         console.log("activado");
         this.background = '#e40d0d'
         this.watchAcceleration();
+        this.desBoton =true;
+        
       } else {
-        console.log("desactivado");
+        
         this.background = '#22e610'
         this.stop();
         this.apagarTodo();
       }
+    }
+    async presentAlert() {
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        header: 'Error',
+        subHeader: 'validacion',
+        message: 'Contraseña inválida',
+        buttons: ['OK']
+      });
+  
+      await alert.present();
+    }
+    verificar()
+    {
+      var email="";
+      this.auth.getUserEmail().then(res =>{
+       email = res.toString();
+     
+       this.auth.login(email,this.clave.toString()).then(res =>{
+         this.toats.confirmationToast("Ya puedes pausar la alarma")
+        console.log("desactivado");
+        this.contra=false;
+        this.desBoton=false;
+        this.clave="";
+
+       }).catch(res=>{
+        console.log("Contraseña incorrecta");
+         this.toats.errorToast("Contraseña inválida");
+       })
+      
+     }).catch(res =>{
+      email = res.toString();
+      console.log("Usuario invalido");
+     });
     }
   
     apagarTodo() {
@@ -140,7 +188,7 @@ export class HomePage {
     }
 
     logOut() {
-      //this.auth.logout();
+     this.auth.logout();
     }
 
 }

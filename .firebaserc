@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "login-c5ac1": {
+      "hosting": {
+        "app": [
+          "login-c5ac1"
+        ]
+      }
+    }
+  }
+}

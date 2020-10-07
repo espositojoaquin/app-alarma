@@ -29,21 +29,38 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ld ld-blur-in" [style.background-color]="background" id="fondo">
+
+  <div class="ld ld-blur-in" [style.background-color]="background" id="fondo" style="height: 100%;">
     <div id="info-text" [style.color]="activado?'#fff':'#000'" class="ion-padding">
      <h1 class="ld ld-slide-ltr-in">Presione el botón para activar o desactivar el detector de robo</h1> 
     </div>
-    <div style="margin-bottom: 5rem;" [style.animation-name]="activado?'example':''" class="btn-alarm " (click)="activar()">
-      <img class="ld ld-blur-in" *ngIf="!activado" src="../../assets/candadoA.png" alt="">
-      <img class="ld ld-blur-in" *ngIf="activado" src="../../assets/candado.png" alt="">
+    <div *ngIf="contra" [ngClass]="clase">
+      <ion-item style="position: absolute;" class="clave" style="width: 70%; align-items: center; border-radius: 1rem; " >
+        <ion-label position="floating" >Contraseña</ion-label>
+        <ion-input [(ngModel)]="clave" type="password" ></ion-input>
+        <ion-button (click)="verificar()" expand = "block" color = "primary">Verificar</ion-button>
+      </ion-item>
 
     </div>
-    <div class="ion-text-center" *ngIf="activado" id="alarm-activada">
+    <div class="clave">
+      <button [disabled]="desBoton" onclick="this.blur();" style="margin-bottom: 5rem;" [style.animation-name]="activado?'example':''" class="btn-alarm " (click)="activar()">
+        <img class="ld ld-blur-in" *ngIf="!activado" src="../../assets/candadoA.png" alt="">
+        <img class="ld ld-blur-in" *ngIf="activado" src="../../assets/candado.png" alt="">
+      
+        
+      </button>
+
+    </div>
+       
+       
+    <div class="ion-text-center" style="margin-bottom: 5rem;" *ngIf="activado" id="alarm-activada">
       <span><b>¡ALARMA ACTIVADA!</b></span>
     </div>
     <div style="margin-bottom: 5rem; font-size: 3rem;" class="ion-text-center"  *ngIf="!activado" >
       <span><b>¡ALARMA DESACTIVADA!</b></span>
     </div>
+    <div style="height: 5rem;">
+
+    </div>
   </div>
-</ion-content>
+
